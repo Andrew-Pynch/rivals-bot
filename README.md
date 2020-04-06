@@ -1,2 +1,2 @@
-# rivals-bot
-rivals of aether bot
+# rivals bot
+implementing a self teaching agent in the fighting game rivals of aether
