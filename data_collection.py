@@ -23,20 +23,6 @@ while True:
         
         break
 
-# def main():
-#     last_time = time.time()
-#     controller = XboxController()
-#     while True:
-#         print(controller.read())
-#         # This automatically converts the image to grayscale when it is brought in
-#         screen = grab_screen(region=(0, 40, 1920, 1120))
-#         #print('Frame took {} seconds'.format(time.time()-last_time))
-#         last_time = time.time()
-#         cv2.imshow('window', screen)
-#         # cv2.imshow('window',cv2.cvtColor(screen, cv2.COLOR_BGR2RGB))
-#         if cv2.waitKey(25) & 0xFF == ord('q'):
-#             cv2.destroyAllWindows()
-#             break
 
 def main(file_name, starting_value):
     # Instantiate the gamepad
@@ -56,15 +42,12 @@ def main(file_name, starting_value):
 
     while True:
         if not paused:
-            screen = grab_screen(region=(0, 40, 1920, 1120))
+            screen = grab_screen(region=(0, 40, 1920, 1040))
             last_time = time.time()
             # resize to something a bit more acceptable for a CNN
             screen = cv2.resize(screen, (480,270))
             # run a color convert:
             screen = cv2.cvtColor(screen, cv2.COLOR_BGR2RGB)
-
-            # SHOW SCREEN?
-            cv2.imshow('window', screen)
 
             controller_output = controller.read()
             training_data.append([screen, controller_output])
