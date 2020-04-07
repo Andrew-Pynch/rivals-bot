@@ -66,6 +66,10 @@ def main(file_name, starting_value):
                     file_name = 'data/training_data-{}.npy'.format(starting_value)
 
         keys = key_check()
+        # if 'S' in keys:
+        #     np.save(file_name, training_data)
+        #     print('SAVED TRAINING DATA')
+
         if 'T' in keys:
             if paused:
                 paused = False

@@ -150,14 +150,22 @@ class MainWindow():
         self.img_panel.img = ImageTk.PhotoImage(self.img)
         self.img_panel['image'] = self.img_panel.img
 
+
         # Joystick
         x = np.asarray(self.plotData)
         self.axes.clear()
-        self.axes.plot(range(0,self.plotMem), x[:,0], 'r')
-        self.axes.plot(range(0,self.plotMem), x[:,1], 'b')
-        self.axes.plot(range(0,self.plotMem), x[:,2], 'g')
-        self.axes.plot(range(0,self.plotMem), x[:,3], 'k')
-        self.axes.plot(range(0,self.plotMem), x[:,4], 'y')
+        self.axes.plot(range(0,self.plotMem), x[:,0], 'xl')
+        self.axes.plot(range(0,self.plotMem), x[:,1], 'yl')
+        self.axes.plot(range(0,self.plotMem), x[:,2], 'xr')
+        self.axes.plot(range(0,self.plotMem), x[:,3], 'yr')
+
+        self.axes.plot(range(0,self.plotMem), x[:,4], 'a')
+        self.axes.plot(range(0,self.plotMem), x[:,5], 'b')
+        self.axes.plot(range(0,self.plotMem), x[:,6], 'x')
+        self.axes.plot(range(0,self.plotMem), x[:,7], 'y')
+
+        self.axes.plot(range(0,self.plotMem), x[:,8], 'bumper')
+        self.axes.plot(range(0,self.plotMem), x[:,9], 'trigger')
         self.PlotCanvas.draw()
 
 
