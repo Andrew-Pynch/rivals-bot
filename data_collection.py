@@ -20,7 +20,6 @@ while True:
         starting_value += 1
     else:
         print('File does not exist, starting fresh!',starting_value)
-        
         break
 
 
