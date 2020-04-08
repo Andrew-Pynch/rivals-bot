@@ -12,11 +12,9 @@ from utils import Sample
 
 from utils import XboxController
 from getkeys import key_check
+from directkeys import PressKey,ReleaseKey, W, A, S, D, UP, DOWN, LEFT, RIGHT, Z, X, C
 from grabscreen import grab_screen
-from vjoy import vJoy, ultimate_release
-
-vj = vJoy()
-
+# from vjoy import vJoy, ultimate_release
 
 MODEL_NAME = 'models/test_model_v2.h5'
 
@@ -74,16 +72,16 @@ class Actor(object):
 
         ### calibration
         output = [
-            round((ai_control[0]), 3),
-            round((ai_control[1]), 3),
+            round((ai_control[0]), 3), # L / R
+            round((ai_control[1]), 3), # U / D
             round((ai_control[2]), 3),
             round((ai_control[3]), 3),
-            int(round(ai_control[4])),
-            int(round(ai_control[5])),
-            int(round(ai_control[6])),
-            int(round(ai_control[7])),
-            int(round(ai_control[8])),
-            int(round(ai_control[9])),
+            int(round(ai_control[4])), # A
+            int(round(ai_control[5])), # B
+            int(round(ai_control[6])), # X
+            int(round(ai_control[7])), # Y
+            int(round(ai_control[8])), # B
+            int(round(ai_control[9])), # T
         ]
 
         ### print to console
@@ -95,7 +93,22 @@ class Actor(object):
         return output
 
 
+def moves(action_vector):
+    Xstick = action_vector[0]
+    Ystick = action_vector[1]
+    # Bumpers / Triggers
+    if Xstick > -.8:
+        PressKey(RIGHT)
+    elif Xstick < -.8:
+        PressKey(LEFT)
+    
+    
+
 def main():
+    for i in list(range(4))[::-1]:
+        print(i + 1)
+        time.sleep(1)
+
     actor = Actor()
     end_episode = False
     while not end_episode:
@@ -111,9 +124,7 @@ def main():
 
         action = actor.get_action(screen)
 
-        # Emulate the controller
-        vj.open()
-        joystickPosition = vj.generateJoystickPosition(wAxisZ=int(action[0]))
+        moves(action)
 
         if cv2.waitKey(25) & 0xFF == ord('q'):
             cv2.destroyAllWindows()

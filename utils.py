@@ -92,7 +92,7 @@ class XboxController(object):
         
         if (rt or lt) > 0:
             trigger = 1
-
+        #       L JS X       L JS Y         R JS X        R JS Y        A  B  X  Y  BUMPER  TRIGGER
         return [round(xl, 3), round(yl, 3), round(xr, 3), round(yr, 3), a, b, x, y, bumper, trigger]
 
 
